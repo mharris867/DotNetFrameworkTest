@@ -1,8 +1,9 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('Build') {
+            agent {label 'windows'}
             steps {
                 echo 'Building..'
             }
