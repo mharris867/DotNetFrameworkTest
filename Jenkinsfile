@@ -16,8 +16,12 @@ pipeline {
         stage('Test') {
             steps {
                 powershell '''
+                    Write-Host "Restoring: "msbuild.exe -t:restore ./UnitTestProject1/UnitTestProject1.sln"
+                    Invoke-Expression "msbuild.exe -t:restore ./UnitTestProject1/UnitTestProject1.sln"
                     Write-Host "Compiling: msbuild.exe /p:Configuration=Release ./UnitTestProject1/UnitTestProject1.sln"
                     Invoke-Expression "msbuild.exe /p:Configuration=Release ./UnitTestProject1/UnitTestProject1.sln /consoleloggerparameters:ForceConsoleColor"
+                    Write-Host "Running:  vstest.console.exe """"$ENV:GRUNT_TESTS"""" /Enablecodecoverage /InIsolation /Logger:trx"
+                    & vstest.console.exe """"$ENV:GRUNT_TESTS"""" /Enablecodecoverage /InIsolation /Logger:trx
                 '''
             }
         }
