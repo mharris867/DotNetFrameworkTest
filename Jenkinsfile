@@ -8,14 +8,17 @@ pipeline {
         stage('Build') {            
             steps {
                 powershell '''
-                    Write-Host "Compiling package for:  msbuild.exe /p:Configuration=Release $ENV:VS_SOLUTION"
+                    Write-Host "Compiling package for:  msbuild.exe /p:Configuration=Release ./testlibrary/testlibrary.csproj"
                     Invoke-Expression "msbuild.exe /p:Configuration=Release ./testlibrary/testlibrary.csproj"
                 '''
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                powershell '''
+                    Write-Host "Compiling: msbuild.exe /p:Configuration=Release ./UnitTestProject1/UnitTestProject1.sln"
+                    Invoke-Expression "msbuild.exe /p:Configuration=Release ./UnitTestProject1/UnitTestProject1.sln /consoleloggerparameters:ForceConsoleColor"
+                '''
             }
         }
         stage('Deploy') {
