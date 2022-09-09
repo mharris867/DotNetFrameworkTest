@@ -9,6 +9,7 @@ pipeline {
             steps {
                 powershell '''
                     Write-Host "Compiling package for:  msbuild.exe /p:Configuration=Release $ENV:VS_SOLUTION"
+                    Invoke-Expression "msbuild.exe /p:Configuration=Release ./testlibrary/testlibrary.csproj"
                 '''
             }
         }
