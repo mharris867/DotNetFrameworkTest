@@ -1,7 +1,7 @@
 pipeline {
     agent {label 'windows'}
     options {
-    ansiColor('xterm')
+    // ansiColor('xterm')
     timestamps()
   }
     stages {
