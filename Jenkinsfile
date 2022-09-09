@@ -16,7 +16,7 @@ pipeline {
         stage('Test') {
             steps {
                 powershell '''
-                    Write-Host "Restoring: "msbuild.exe -t:restore ./UnitTestProject1/UnitTestProject1.sln"
+                    Write-Host "Restoring: msbuild.exe -t:restore ./UnitTestProject1/UnitTestProject1.sln"
                     Invoke-Expression "msbuild.exe -t:restore ./UnitTestProject1/UnitTestProject1.sln"
                     Write-Host "Compiling: msbuild.exe /p:Configuration=Release ./UnitTestProject1/UnitTestProject1.sln"
                     Invoke-Expression "msbuild.exe /p:Configuration=Release ./UnitTestProject1/UnitTestProject1.sln /consoleloggerparameters:ForceConsoleColor"
