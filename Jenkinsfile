@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {            
             steps {
                 powershell '''
-                    && VsDevCmd.bat
+                    & "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/Common7/Tools/VsDevCmd.bat"
                     Invoke-WebRequest "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" -OutFile "./nuget.exe"
                     Write-Host "Restoring: ./nuget.exe restore ./testlibrary/testlibrary.csproj"
                     Invoke-Expression "./nuget.exe restore ./testlibrary/testlibrary.csproj"
