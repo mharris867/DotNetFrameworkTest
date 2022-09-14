@@ -12,7 +12,7 @@ pipeline {
                     Write-Host "Restoring: ./nuget.exe restore ./testlibrary/testlibrary.csproj"
                     Invoke-Expression "./nuget.exe restore ./testlibrary/testlibrary.csproj"
                     Write-Host "Compiling package for:  msbuild.exe /p:Configuration=Release ./testlibrary/testlibrary.csproj"
-                    Invoke-Expression "msbuild.exe /p:Configuration=Release ./testlibrary/testlibrary.csproj"
+                    Invoke-Expression "msbuild.exe /p:Configuration=Release .\testlibrary\testlibrary.csproj"
                 '''
             }
         }
